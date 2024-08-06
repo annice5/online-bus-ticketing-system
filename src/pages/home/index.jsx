@@ -1,10 +1,11 @@
 import { TicketIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
+import Footer from "../../components/footer";
 
 
 
 
-const Landing = () => {
+const Home = () => {
 
     const popularRoutes = [
         { from: 'Accra', to: 'Kumasi' },
@@ -24,14 +25,13 @@ const Landing = () => {
     return (
       <div className="min-h-screen flex flex-col">
       {/* Header */}
-      <header className="bg-[#FFFFFF] shadow p-4 flex justify-between ">
-        <div className="text-2xl font-bold ml-8 text-[#C59637] flex" >  Ticketty <TicketIcon className="flex size-5 text-[#34646E] mt-1 "/> </div>
-        <nav className="flex gap-4 mt-2">
-          <a href="/about" className="font-semibold" >About</a>
-          <a href="/routes" className="font-semibold">Routes</a>
-          <a href="/profile" className="font-semibold">Profile</a>
+      <header className="bg-[#FFFFFF] shadow p-4 flex sm:flex justify-between ">
+        <div className="text-2xl sm:text-left font-bold ml-8 text-[#C59637] flex" >  Ticketty <TicketIcon className="flex size-5 text-[#34646E] mt-1 "/> </div>
+        <nav className="flex sm:flex gap-4 mt-2">
+          <a href="/" className="font-semibold" >Home</a>
+          
         </nav>
-      <div className="flex gap-5">
+      <div className="flex sm:flex gap-5">
      <Link to = "/login">
      <button className="bg-[#34646E] text-white px-4 py-2 rounded  ">Login</button>
      </Link>
@@ -92,16 +92,10 @@ const Landing = () => {
             </div>
         </div>
   
-      {/* Footer */}
-      <footer className="bg-[#34646E] text-white p-4  ">
-        <div className="container mx-auto flex justify-center">
-          <div>&copy; 2024 Ticketty.All rights reserved.</div>
-          
-        </div>
-        <div className="flex justify-center">Contact: info@ticketty.com</div>
-      </footer>
+      <Footer/>
+     
     </div>
     )
   }
   
-  export default Landing
+  export default Home

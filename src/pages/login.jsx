@@ -1,6 +1,18 @@
 import loginVideo from "../assets/videos/loginVideo.mp4";
+import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 const Login = () => {
+    
+    const [role, setRole] = useState('user');
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+      };
+    const [showPassword, setShowPassword] = useState(false);
+    
+
+
   return (
     
     <div className="flex min-h-screen bg-gray-100">
@@ -33,17 +45,38 @@ const Login = () => {
             placeholder="Username"
           />
         </div>
-        <div className="mb-6">
+        <div className="mb-6 relative">
           <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
             Password
           </label>
           <input
             className="w-full p-3 border border-gray-300 rounded focus:outline-none  focus:ring  focus:ring-[#34646E]   "
             id="password"
-            type="password"
+            type={showPassword ? "text" : "password"}
             placeholder="******************"
           />
+           <span
+             className="absolute inset-y-0 right-0 flex items-center px-2 cursor-pointer"
+             onClick={togglePasswordVisibility}
+            >
+            <FontAwesomeIcon
+              icon={showPassword ? faEyeSlash : faEye}
+              className="mt-5 size-3"
+            />
+          </span>
         </div>
+        <div className="mb-6">
+            <label className="block text-gray-700 text-sm font-bold mb-2">Role</label>
+            <select
+              className="w-full p-3 border border-gray-300 rounded focus:outline-none  focus:ring  focus:ring-[#34646E] "
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+            >
+              <option value="user">User</option>
+              <option value="admin">Administrator</option>
+            </select>
+          </div>
+
         <div className="flex items-center justify-between">
           <button
             className="bg-[#34646E] text-white px-4 py-2 rounded "
