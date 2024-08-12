@@ -111,7 +111,7 @@ function AdminSignupForm() {
             id="first-name"
             placeholder="Enter your first name"
             name=""
-            className="shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none  focus:ring  focus:ring-[#34646E]   "
+            className="shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none  focus:ring  focus:ring-[#04071F]   "
             {...register("firstName", {
               required: "First Name is required",
             })}
@@ -131,7 +131,7 @@ function AdminSignupForm() {
             type="text"
             id="last-name"
             placeholder=" Enter your last name"
-            className=" shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none focus:ring  focus:ring-[#34646E]  "
+            className=" shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none focus:ring  focus:ring-[#04071F]  "
             {...register("lastName", { required: "Lastname is required" })}
           />
           {errors.lastName && (
@@ -149,7 +149,7 @@ function AdminSignupForm() {
             type="email"
             id="email"
             placeholder=" Enter your Email"
-            className="shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none focus:ring  focus:ring-[#34646E]  "
+            className="shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none focus:ring  focus:ring-[#04071F]  "
             {...register("email", { required: "Email is required" })}
           />
           {errors.email && (
@@ -167,7 +167,7 @@ function AdminSignupForm() {
             type="text"
             id="username"
             placeholder="Enter your username"
-            className="shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none focus:ring  focus:ring-[#34646E]  "
+            className="shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none focus:ring  focus:ring-[#04071F]  "
             {...register("userName", { required: "Username is required" })}
           />
           {errors.userName && (
@@ -195,7 +195,7 @@ function AdminSignupForm() {
             type={showPassword ? "text" : "password"}
             id="password"
             placeholder=" Enter Password"
-            className="shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none focus:ring  focus:ring-[#34646E]  "
+            className="shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none focus:ring  focus:ring-[#04071F]  "
             {...register("password", {
               required: "Password is required",
               minLength: {
@@ -228,7 +228,7 @@ function AdminSignupForm() {
             type={showConfirmPassword ? "text" : "password"}
             id="confirm-password"
             placeholder="Enter confirm Password"
-            className="shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none  focus:ring  focus:ring-[#34646E]  "
+            className="shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none  focus:ring  focus:ring-[#04071F]  "
             {...register("confirmPassword", {
               required: "Confirm Password is required",
             })}
@@ -248,14 +248,14 @@ function AdminSignupForm() {
         </div>
         <button
           type="submit"
-          className="bg-[#34646E] text-white font-bold px-4 py-2 rounded w-full mt-2"
+          className="bg-[#04071F] text-white font-bold px-4 py-2 rounded w-full mt-2"
         >
           {isSubmitting ? <Loader /> : "Signup as Administrator"}
         
         </button>
         <p className="pb-5 mt-2 text-sm  text-center">
           Already have an account?{" "}
-          <a href="/login" className="text-[#34646E]">
+          <a href="/login" className="text-[#04071F]">
             Login
           </a>
         </p>
@@ -366,7 +366,7 @@ function UserSignupForm() {
             id="first-name"
             placeholder="Enter your first name"
             name=""
-            className="shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none  focus:ring  focus:ring-[#34646E]   "
+            className="shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none  focus:ring  focus:ring-[#04071F]  "
             {...register("firstName", {
               required: "First Name is required",
             })}
@@ -386,7 +386,7 @@ function UserSignupForm() {
             type="text"
             id="last-name"
             placeholder=" Enter your last name"
-            className=" shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none focus:ring  focus:ring-[#34646E]  "
+            className=" shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none focus:ring  focus:ring-[#04071F]  "
             {...register("lastName", { required: "Lastname is required" })}
           />
           {errors.lastName && (
@@ -404,7 +404,7 @@ function UserSignupForm() {
             type="email"
             id="email"
             placeholder=" Enter your Email"
-            className="shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none focus:ring  focus:ring-[#34646E]  "
+            className="shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none focus:ring  focus:ring-[#04071F]  "
             {...register("email", { required: "Email is required" })}
           />
           {errors.email && (
@@ -422,7 +422,7 @@ function UserSignupForm() {
             type="text"
             id="username"
             placeholder="Enter your username"
-            className="shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none focus:ring  focus:ring-[#34646E]  "
+            className="shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none focus:ring  focus:ring-[#04071F]  "
             {...register("userName", { required: "Username is required" })}
           />
           {errors.userName && (
@@ -450,7 +450,7 @@ function UserSignupForm() {
             type={showPassword ? "text" : "password"}
             id="password"
             placeholder=" Enter Password"
-            className="shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none focus:ring  focus:ring-[#34646E]  "
+            className="shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none focus:ring  focus:ring-[#04071F]  "
             {...register("password", {
               required: "Password is required",
               minLength: {
@@ -483,7 +483,7 @@ function UserSignupForm() {
             type={showConfirmPassword ? "text" : "password"}
             id="confirm-password"
             placeholder="Enter confirm Password"
-            className="shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none  focus:ring  focus:ring-[#34646E]  "
+            className="shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none  focus:ring  focus:ring-[#04071F]  "
             {...register("confirmPassword", {
               required: "Confirm Password is required",
             })}
@@ -504,7 +504,7 @@ function UserSignupForm() {
 
         <button
           type="submit"
-          className="bg-[#34646E] text-white font-bold mt-2 px-4 py-2 rounded w-full"
+          className="bg-[#04071F] text-white font-bold mt-2 px-4 py-2 rounded w-full"
         >
           {isSubmitting ? <Loader /> : "Signup as User"}
         </button>

@@ -69,7 +69,7 @@ return(
             type="email"
             id="email"
             placeholder=" Enter your Email"
-            className="shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none focus:ring  focus:ring-[#34646E]  "
+            className="shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none focus:ring  focus:ring-[#04071F]  "
             {...register("email", { required: "Email is required" })}
           />
           {errors.email && (
@@ -88,7 +88,7 @@ return(
             type={showPassword ? "text" : "password"}
             id="password"
             placeholder=" Enter Password"
-            className="shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none focus:ring  focus:ring-[#34646E]  "
+            className="shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none focus:ring  focus:ring-[#04071F]  "
             {...register("password", {
               required: "Password is required",
              
@@ -111,7 +111,7 @@ return(
 
         <button
               type="submit"
-              className="bg-[#34646E] text-white font-bold px-4 py-2 rounded w-full mt-2"
+              className="bg-[#04071F] text-white font-bold px-4 py-2 rounded w-full mt-2"
             >
               {isSubmitting ? <Loader/> : "Login as Adminisrator"}
               
@@ -163,9 +163,9 @@ function UserLoginForm(){
       })
       console.log("Response: ", res.data);
 
-      addToLocalStorage(res.data.acessToken, res.data.user);
+      addToLocalStorage(res.data.accessToken, res.data.user);
       toast.success(res.data.message);
-      setTimeout(() => { navigate("/user") }, 5000);
+      setTimeout(() => { navigate("/userPage") }, 5000);
 
     } catch (error) {
       console.log(error)
@@ -210,7 +210,7 @@ return(
           type={showPassword ? "text" : "password"}
           id="password"
           placeholder=" Enter Password"
-          className="shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none focus:ring  focus:ring-[#34646E]  "
+          className="shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none focus:ring  focus:ring-[#04071F]  "
           {...register("password", {
             required: "Password is required",
            
@@ -233,7 +233,7 @@ return(
 
       <button
             type="submit"
-            className="bg-[#34646E] text-white font-bold px-4 py-2 rounded w-full mt-2"
+            className="bg-[#04071F] text-white font-bold px-4 py-2 rounded w-full mt-2"
           >
             {isSubmitting ? <Loader/> : "Login as User"}
             

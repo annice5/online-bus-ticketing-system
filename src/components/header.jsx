@@ -1,4 +1,21 @@
+
+import { useState } from "react";
+
+
+
+
+
 const Header = () => {
+       
+    const [user, setUser]  = useState();
+
+    const getAvatar = () => {
+        if (!user) return "N/A";
+        const initials = `${firstName[0]}${lastName[0]}`;
+        return initials.toUpperCase();
+      };
+
+
     return (
       <header className="flex items-center justify-between bg-white p-4 shadow-md w-full">
         <div className="flex items-center space-x-4">
@@ -22,15 +39,10 @@ const Header = () => {
             </svg>
           </button>
           <div className="flex items-center space-x-2">
-            <img
-              className="w-8 h-8 rounded-full"
-              src="https://via.placeholder.com/150"
-              alt="User Avatar"
-            />
-            <div>
-              <p className="text-sm font-medium">Thomas Anree</p>
-              <p className="text-xs text-gray-500">UX Designer</p>
-            </div>
+        <span className="text-xl font-semibold text-black rounded-full shadow-md p-3">
+              {getAvatar()}
+            </span>
+           
           </div>
         </div>
       </header>
