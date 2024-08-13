@@ -1,7 +1,6 @@
 import 'react-datepicker/dist/react-datepicker.css';
 import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
-import Navbar from '../components/navbar';
 import { CalendarDateRangeIcon } from '@heroicons/react/24/solid';
 import RoutesTable from '../components/routesTable';
 import Footer from '../components/footer';
@@ -13,8 +12,8 @@ const UserPage = () => {
 
   return (
    <div>
-      <Navbar/>
-      <div className="mt-36 px-4 ml-11">
+      
+      <div className="mt-20 px-4 ml-11">
     <h1 className="text-4xl font-bold text-gray-800 ">Available Routes</h1>
     <p className="text-gray-500 mt-2">Browse available routes</p>
   </div>

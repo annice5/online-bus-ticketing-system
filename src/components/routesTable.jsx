@@ -1,53 +1,80 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from 'axios';
+
 
 const RoutesTable = () => {
+  const [routes, setRoutes] = useState([]);
 
-    const routes = [
-        { from: 'Accra', to: 'Wenchi', type: 'Scheduled', scheduleDay: 'Monday', scheduleTime: '08:30 pm', price: '₵ 180.00' },
-        { from: 'Accra', to: 'Sampa', type: 'Scheduled', scheduleDay: 'Monday', scheduleTime: '07:00 pm', price: '₵ 190.00' },
-        { from: 'Yendi', to: 'Accra', type: 'Scheduled', scheduleDay: 'Monday', scheduleTime: '03:00 pm', price: '₵ 315.00' },
-        { from: 'Bawku', to: 'Accra', type: 'Scheduled', scheduleDay: 'Monday', scheduleTime: '12:00 pm', price: '₵ 360.00' },
-        { from: 'Bolga', to: 'Accra', type: 'Scheduled', scheduleDay: 'Monday', scheduleTime: '10:00 am', price: '₵ 410.00' },
-        { from: 'Tamale', to: 'Accra', type: 'Scheduled', scheduleDay: 'Monday', scheduleTime: '7:00 am', price: '₵ 300.00' },
-      ];
+
+  console.log(routes);
+
+
+  useEffect(() => {
+    const fetchRoutes = async () => {
+      try {
+        
+        const response = await axios.get(" https://ticket-api-vl7w.onrender.com/api/buses");
+        setRoutes(response.data);
+      } catch (error) {
+        console.error('Error fetching the routes:', error);
+      }
+    };
+
+
+
+
+    fetchRoutes();
+  }, []);
+
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const year = date.getFullYear();
+    return `${month}/${day}/${year}`;
+  };
+
 
   return (
     <div className="overflow-x-auto">
-    <table className="min-w-full bg-white border border-gray-300 rounded-3xl shadow-lg pb-10">
-      <thead>
-        <tr className="bg-gray-100">
-          <th className="text-left p-4 border-r border-b border-gray-300">Traveling From</th>
-          <th className="text-left p-4 border-r border-b border-gray-300">Traveling To</th>
-          <th className="text-left p-4 border-r border-b border-gray-300">Trip Type</th>
-          <th className="text-left p-4 border-r border-b border-gray-300">Schedule</th>
-          <th className="text-left p-4 border-r border-b border-gray-300">Price</th>
-          <th className="text-left p-4 border-b border-gray-300">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        {routes.map((route, index) => (
-          <tr key={index} className="hover:bg-gray-50">
-            <td className="p-4 border-r border-b border-gray-300">{route.from}</td>
-            <td className="p-4 border-r border-b border-gray-300">{route.to}</td>
-            <td className="p-4 border-r border-b border-gray-300">{route.type}</td>
-            <td className="p-4 border-r border-b border-gray-300">
-              <div className="text-gray-600">{route.scheduleDay}</div>
-              <div className="text-blue-600">{route.scheduleTime}</div>
-            </td>
-            <td className="p-4 border-r border-b border-gray-300">{route.price}</td>
-            <td className="p-4 border-b border-gray-300">
-              <Link to = "/bookingpage">
-              <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">
-                Book Ticket
-              </button>
-              </Link>
-            </td>
+      <table className="min-w-full bg-white border border-gray-300 rounded-3xl shadow-lg pb-10">
+        <thead>
+          <tr className="bg-gray-100">
+            <th className="py-2 px-4 text-left">Bus Operator</th>
+            <th className="py-2 px-4 text-left">Departure City</th>
+            <th className="py-2 px-4 text-left">Arrival City</th>
+            <th className="py-2 px-4 text-left">Bus Type</th>
+            <th className="py-2 px-4 text-left">Date</th>
+            <th className="py-2 px-4 text-left">Ticket Price</th>
+            <th className="py-2 px-4 text-left"></th>
           </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-  )
-}
+        </thead>
+        <tbody>
+          {routes.map((route, index) => (
+            <tr key={index} className="border-b">
+              <td className="py-2 px-4">{route.busOperator}</td>
+              <td className="py-2 px-4">{route.departureCity}</td>
+              <td className="py-2 px-4">{route.arrivalCity}</td>
+              <td className="py-2 px-4">{route.busType}</td>
+              <td className="py-2 px-4">{formatDate(route.date)}</td>
+              <td className="py-2 px-4">{route.ticketPrice}</td>
+              <td className="py-2 px-4">
+                <Link to={`/bookingpage/${route.id}`}>
+                  <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">
+                    Book Ticket
+                  </button>
+                </Link>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
 
-export default RoutesTable
+
+export default RoutesTable;
+

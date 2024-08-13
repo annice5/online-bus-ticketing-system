@@ -1,24 +1,44 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 
-const SeatSelection = () => {
-  const [selectedSeats, setSelectedSeats] = useState([]);
-  const [bookedSeats] = useState([3, 8, 11, 18]); // Example booked seats
+
+const SeatSelection = ({ busId, onSeatSelect, selectedSeats }) => {
+  const [seats, setSeats] = useState([]);
+
+
+  useEffect(() => {
+    const fetchSeats = async () => {
+      try {
+        const response = await axios.get(`https://ticket-api-vl7w.onrender.com/api/buses/${busId}/seats`);
+        setSeats(response.data.seats || []);
+      } catch (error) {
+        console.error('Error fetching seat data:', error);
+      }
+    };
+
+
+    fetchSeats();
+  }, [busId]);
+
 
   const toggleSeat = (seatNumber) => {
     if (selectedSeats.includes(seatNumber)) {
-      setSelectedSeats(selectedSeats.filter(seat => seat !== seatNumber));
+      onSeatSelect(selectedSeats.filter(seat => seat !== seatNumber));
     } else {
-      setSelectedSeats([...selectedSeats, seatNumber]);
+      onSeatSelect([...selectedSeats, seatNumber]);
     }
   };
 
+
   const renderSeats = () => {
-    const seats = [];
-    for (let i = 1; i <= 40; i++) {
-      const isBooked = bookedSeats.includes(i);
+    const totalSeats = seats.length;
+    const renderedSeats = [];
+    for (let i = 1; i <= totalSeats; i++) {
+      const isBooked = seats.includes(i);
       const isSelected = selectedSeats.includes(i);
 
-      seats.push(
+
+      renderedSeats.push(
         <button
           key={i}
           className={`m-1 w-12 h-12 rounded-full border-2 ${
@@ -37,21 +57,17 @@ const SeatSelection = () => {
         </button>
       );
     }
-    return seats;
+    return renderedSeats;
   };
 
+
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg mt-6">
-      <h2 className="text-xl font-bold mb-4 mt-32">Seat Selection</h2>
-      <div className="mt-8">
-        <span className="inline-block w-3 h-3 bg-gray-200 mr-2"></span> Booked
-        <span className="inline-block w-3 h-3 bg-green-500 ml-4 mr-2"></span> Selected
-        <span className="inline-block w-3 h-3 bg-white ml-4 mr-2 border border-green-500"></span> Available
-      </div>
-      <div className="flex justify-center flex-wrap mt-10">{renderSeats()}</div>
-     
+    <div className="seat-container">
+      {renderSeats()}
     </div>
   );
 };
 
+
 export default SeatSelection;
+
