@@ -43,7 +43,7 @@ function AdminLoginForm(){
   
         addToLocalStorage(res.data.acessToken, res.data.user);
         toast.success(res.data.message);
-        setTimeout(() => { navigate("/admindashboard") }, 3000);
+        setTimeout(() => { navigate("/dashboard") }, 3000);
   
       } catch (error) {
         console.log(error)
@@ -165,7 +165,7 @@ function UserLoginForm(){
 
       addToLocalStorage(res.data.accessToken, res.data.user);
       toast.success(res.data.message);
-      setTimeout(() => { navigate("/userPage") }, 5000);
+      setTimeout(() => { navigate("/userpage") }, 5000);
 
     } catch (error) {
       console.log(error)
