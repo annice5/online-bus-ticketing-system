@@ -2,7 +2,7 @@ import React from "react";
 import ReactApexChart from "react-apexcharts";
 // import ApexCharts from 'apexcharts' // Ensure you have this import
 
-class ProfitChart extends React.Component {
+class ActiveBuses2024 extends React.Component {
   constructor(props) {
     super(props);
 
@@ -10,7 +10,7 @@ class ProfitChart extends React.Component {
       series: [
         {
           name: "buses",
-          data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2, 2.3, 1.4, 0.8, 0.5, 0.2],
+          data: [50, 20, 40, 50, 20, 60, 30, 0.0, 0.0, 0.0, 0.0, 0.0],
         },
       ],
       options: {
@@ -28,9 +28,9 @@ class ProfitChart extends React.Component {
         },
         dataLabels: {
           enabled: true,
-          formatter: function (val) {
-            return val + "%";
-          },
+        //   formatter: function (val) {
+        //     return val + "%";
+        //   },
           offsetY: -20,
           style: {
             fontSize: "12px",
@@ -84,9 +84,9 @@ class ProfitChart extends React.Component {
           },
           labels: {
             show: false,
-            formatter: function (val) {
-              return val + "%";
-            },
+            // formatter: function (val) {
+            //   return val + "%";
+            // },
           },
         },
         title: {
@@ -95,9 +95,10 @@ class ProfitChart extends React.Component {
           offsetY: 330,
           align: "center",
           style: {
-            color: "#444",
+            color: "#04071F",
           },
         },
+      
       },
     };
   }
@@ -121,4 +122,4 @@ class ProfitChart extends React.Component {
   }
 }
 
-export default ProfitChart;
+export default ActiveBuses2024;

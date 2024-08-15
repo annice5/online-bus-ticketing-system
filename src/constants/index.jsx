@@ -23,12 +23,7 @@ NAVLINKS : [
         link: "/dashboard/bookings",
 
     },
-    {
-        icon: <User2Icon/>,
-        text: "Users",
-        link: "/dashboard/users",
-
-    }
+   
 ]
 
 
