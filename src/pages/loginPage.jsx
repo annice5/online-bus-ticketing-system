@@ -30,6 +30,7 @@ function AdminLoginForm(){
       localStorage.setItem("lastName", user.lastName);
       localStorage.setItem("userName", user.userName);
     };
+    console.log("accessToken:", localStorage.getItem("accessToken"));
 
     const onSubmit = async (data) => {
       console.log(data);
@@ -41,7 +42,7 @@ function AdminLoginForm(){
         })
         console.log("Response: ", res.data);
   
-        addToLocalStorage(res.data.acessToken, res.data.user);
+        addToLocalStorage(res.data.accessToken, res.data.user);
         toast.success(res.data.message);
         setTimeout(() => { navigate("/dashboard") }, 3000);
   
