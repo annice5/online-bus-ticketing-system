@@ -10,6 +10,8 @@ import BookingPage from "./pages/bookingPage.jsx";
 import DashboardLayout from "./pages/dashboard/layout/dashboardLayout.jsx";
 import Bookings from "./pages/dashboard/bookings.jsx";
 import Buses from "./pages/dashboard/buses.jsx";
+import CheckoutSuccess from "./components/checkoutSuccess.jsx";
+
 
 const router = createBrowserRouter([
   {
@@ -54,6 +56,11 @@ const router = createBrowserRouter([
     path: "/bookingpage/:busId",
     element: <BookingPage/>,
   },
+  {
+    path: "/checkout-success",
+    element: <CheckoutSuccess />,
+  },
+
 ]);
 
 function App() {

@@ -36,7 +36,7 @@ const DashboardLayout = () => {
     <div className="flex bg-white ">
       <Sidebar/>
       <div className=" w-full">
-        <div className="flex px-16 bg-[#04071F] py-5 shadow-lg items-center">
+        <div className="flex px-16 bg-gray-200 py-5 shadow-lg items-center">
          
           <Link
             to="/dashboard/userprofile"

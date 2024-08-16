@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { apiSignUp, apiCheckUsernameExists } from "../services/auth";
+import { apiSignUp, apiSignUpAdmin, apiCheckUsernameExistsAdmin } from "../services/auth";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -50,7 +50,8 @@ function AdminSignupForm() {
   const checkuserName = async (userName) => {
     setIsUsernameLoading(true);
     try {
-      const res = await apiCheckUsernameExists(userName);
+      const res = await apiCheckUsernameExistsAdmin(userName);
+      console.log("API Response:", res.data);
       console.log(res.data);
       const user = res.data.user;
       if (user) {
@@ -81,10 +82,13 @@ function AdminSignupForm() {
       email: data.email,
       password: data.password,
       confirmPassword: data.password,
+      companyName: data.companyName,
+      contactNumber: data.contactNumber,
+      address: data.address,
     };
 
     try {
-      const res = await apiSignUp(payload);
+      const res = await apiSignUpAdmin(payload);
       console.log(res.data);
       toast.success(res.data.message);
       navigate("/login");
@@ -182,6 +186,60 @@ function AdminSignupForm() {
               <p className="text-red-500  ">Username is already taken</p>
             )}
           </div>
+        </div>
+        <div className="mb-2">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="last-name"
+          >
+            Phone Number
+          </label>
+          <input
+            type="text"
+            id="contactNumber"
+            placeholder=" Enter your Phone Number"
+            className=" shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none focus:ring  focus:ring-[#04071F]  "
+            {...register("contactNumber", { required: "Phone Number is required" })}
+          />
+          {errors.contactNumber && (
+            <p className="text-red-500">{errors.contactNumber.message}</p>
+          )}
+        </div>
+        <div className="mb-2">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="last-name"
+          >
+            Company Name
+          </label>
+          <input
+            type="text"
+            id="companyName"
+            placeholder=" Enter your Company Name"
+            className=" shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none focus:ring  focus:ring-[#04071F]  "
+            {...register("companyName", { required: "Company Name is required" })}
+          />
+          {errors.companyName && (
+            <p className="text-red-500">{errors.companyName.message}</p>
+          )}
+        </div>
+        <div className="mb-2">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="last-name"
+          >
+            Address
+          </label>
+          <input
+            type="text"
+            id="address"
+            placeholder=" Enter your Address"
+            className=" shadow appearance-none border rounded w-full py-2 px-3 focus:outline-none focus:ring  focus:ring-[#04071F]  "
+            {...register("address", { required: "Address is required" })}
+          />
+          {errors.address && (
+            <p className="text-red-500">{errors.address.message}</p>
+          )}
         </div>
         <div className="mb-2 relative">
           <label

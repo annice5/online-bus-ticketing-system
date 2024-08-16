@@ -5,7 +5,7 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import { apiLogIn } from "../services/auth";
+import { apiLogIn, apiLogInAdmin } from "../services/auth";
 
 function AdminLoginForm(){
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -29,14 +29,17 @@ function AdminLoginForm(){
       localStorage.setItem("firstName", user.firstName);
       localStorage.setItem("lastName", user.lastName);
       localStorage.setItem("userName", user.userName);
+      localStorage.setItem("userId", user.id || user.userId || user._id);
+
     };
     console.log("accessToken:", localStorage.getItem("accessToken"));
+    console.log("userId:", localStorage.getItem("userId"));
 
     const onSubmit = async (data) => {
       console.log(data);
       setIsSubmitting(true);
       try {
-        const res = await apiLogIn({
+        const res = await apiLogInAdmin({
           email: data.email,
           password: data.password
         })
@@ -152,6 +155,8 @@ function UserLoginForm(){
     localStorage.setItem("firstName", user.firstName);
     localStorage.setItem("lastName", user.lastName);
     localStorage.setItem("userName", user.userName);
+    localStorage.setItem("userId", user.id || user.userId || user._id);  
+    localStorage.setItem("email", user.email);
   };
 
   const onSubmit = async (data) => {

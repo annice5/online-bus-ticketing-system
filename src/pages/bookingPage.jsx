@@ -4,6 +4,7 @@ import PaymentInfo from "../components/paymentInfo";
 import Footer from "../components/footer";
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import UserNavbar from '../components/userNavbar';
 
 
 const BookingPage = () => {
@@ -38,36 +39,21 @@ const BookingPage = () => {
   };
 
 
-  const handleBooking = async () => {
-    try {
-      const response = await axios.post('https://ticket-api-vl7w.onrender.com/users/bookings', {
-        bus: busId,
-        seats: selectedSeats,
-        paymentMethod,
-      });
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-
   return (
-    <div className="App">
-      <div className="p-8 flex ">
-        <div className="">
-          
-          <div className="flex space-x-6 mt-20 ">
-          <div>
-          <h2 className="text-xl font-bold mb-4">Seat Selection</h2>
-          <SeatSelection busId={busId} onSeatSelect={handleSeatSelection} selectedSeats={selectedSeats} />
+    <div className="flex flex-col min-h-screen">
+       <UserNavbar />
+      <div className="flex-grow flex justify-center items-center">
+        <div className="App mx-auto p-8 flex flex-col max-w-screen-lg">
+          <div className="flex flex-col space-y-6 mt-20">
+            <div>
+              <h2 className="text-xl font-bold mb-4">Seat Selection</h2>
+              <SeatSelection busId={busId} onSeatSelect={handleSeatSelection} selectedSeats={selectedSeats} />
+            </div>
+            <PaymentInfo onPaymentSelect={handlePaymentInfo} paymentMethod={paymentMethod} style={{ marginTop: '20px' }}/>
           </div>
-            <PaymentInfo onPaymentSelect={handlePaymentInfo} paymentMethod={paymentMethod} />
-          </div>
-         
         </div>
       </div>
-      <div className="mt-24">
+      <div className="w-full">
         <Footer />
       </div>
     </div>
