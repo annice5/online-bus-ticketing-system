@@ -6,7 +6,6 @@ const Bookings = () => {
   const [bookings, setBookings] = useState([]);
   const [error, setError] = useState(null);
 
-
   useEffect(() => {
     const checkAuthorization = () => {
       const token = localStorage.getItem("accessToken");
@@ -46,36 +45,44 @@ const Bookings = () => {
         <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-lg mt-10">
           <thead>
             <tr className="bg-gray-100 text-left border-b">
-              <th className="py-3 px-4 font-semibold text-gray-600 border-r">Passenger Name</th>
+              <th className="py-3 px-4 font-semibold text-gray-600 border-r">User ID</th>
+              <th className="py-3 px-4 font-semibold text-gray-600 border-r">Bus Number</th>
               <th className="py-3 px-4 font-semibold text-gray-600 border-r">Route</th>
               <th className="py-3 px-4 font-semibold text-gray-600 border-r">Departure Time</th>
-              <th className="py-3 px-4 font-semibold text-gray-600 border-r">Seat Number</th>
+              <th className="py-3 px-4 font-semibold text-gray-600 border-r">Booked Seats</th>
               <th className="py-3 px-4 font-semibold text-gray-600">Status</th>
             </tr>
           </thead>
           <tbody>
             {bookings.length > 0 ? (
-              bookings.map((booking) => (
-                <tr key={booking._id} className="border-t">
-                  <td className="py-3 px-4 border-r">{booking.user}</td>
-                  <td className="py-3 px-4 border-r">{`${booking?.departureCity}-${booking?.arrivalCity}`}</td>
-                  <td className="py-3 px-4 border-r">{/* You might need to fetch departure time if not available */}</td>
-                  <td className="py-3 px-4 border-r">{booking.seats.join(', ')}</td>
-                  <td className="py-3 px-4">
-                    <span
-                      className={`inline-block px-3 py-1 rounded-full text-white ${
-                        /* Add status logic here if necessary */
-                        booking.seats.length > 0 ? 'bg-green-500' : 'bg-gray-500'
-                      }`}
-                    >
-                      {booking.seats.length > 0 ? 'Confirmed' : 'Pending'}
-                    </span>
-                  </td>
-                </tr>
-              ))
+              bookings.map((booking) => {
+                const bookedSeats = booking.seats
+                  .filter((seat) => seat.isBooked)
+                  .map((seat) => seat.number)
+                  .join(', ');
+
+                return (
+                  <tr key={booking._id} className="border-t">
+                    <td className="py-3 px-4 border-r">{booking.user}</td>
+                    <td className="py-3 px-4 border-r">{booking.busNumber}</td>
+                    <td className="py-3 px-4 border-r">{`${booking?.departureCity}-${booking?.arrivalCity}`}</td>
+                    <td className="py-3 px-4 border-r">{booking.departureTime}</td>
+                    <td className="py-3 px-4 border-r">{bookedSeats || 'No seats booked'}</td>
+                    <td className="py-3 px-4">
+                      <span
+                        className={`inline-block px-3 py-1 rounded-full text-white ${
+                          bookedSeats ? 'bg-green-500' : 'bg-gray-500'
+                        }`}
+                      >
+                        {bookedSeats ? 'Confirmed' : 'Pending'}
+                      </span>
+                    </td>
+                  </tr>
+                );
+              })
             ) : (
               <tr>
-                <td colSpan="5" className="py-3 px-4 text-center">No bookings found</td>
+                <td colSpan="6" className="py-3 px-4 text-center">No bookings found</td>
               </tr>
             )}
           </tbody>
