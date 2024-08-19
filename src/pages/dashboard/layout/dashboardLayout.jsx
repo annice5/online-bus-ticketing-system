@@ -6,11 +6,9 @@ import { getDetails } from "../../../services/config";
 import Sidebar from "../../../components/sidebar";
 
 const DashboardLayout = () => {
-  const [user, setUser]  = useState();
+  const [user, setUser] = useState();
 
   const { token, firstName, lastName, userName } = getDetails();
-
- 
 
   useEffect(() => {
     if (token) {
@@ -33,19 +31,13 @@ const DashboardLayout = () => {
   };
 
   return (
-    <div className="flex bg-white ">
-      <Sidebar/>
+    <div className="flex h-screen bg-white ">
+      <Sidebar />
       <div className=" w-full">
         <div className="flex px-16 bg-gray-200 py-5 shadow-lg items-center">
-         
-          <Link
-            to="/dashboard/userprofile"
-            className="ml-auto  p-4 rounded-full cursor-pointer"
-          >
-            <span className="text-xl font-semibold text-[#04071F] bg-white rounded-full shadow-md p-3">
-              {getAvatar()}
-            </span>
-          </Link>
+          <span className="text-xl font-semibold text-primary ml-auto bg-white rounded-full shadow-md p-3">
+            {getAvatar()}
+          </span>
         </div>
         <Outlet context={[user, setUser]} />
       </div>
