@@ -11,7 +11,7 @@ const Sidebar = () => {
     try {
       await apiLogout();
       toast.success("Logged out successfully");
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       toast.error("An error occurred");
     }
