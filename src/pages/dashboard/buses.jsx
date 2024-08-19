@@ -8,25 +8,22 @@ import {
 } from "../../services/buses";
 
 const Buses = () => {
-  // State for holding the list of buses
   const [buses, setBuses] = useState([]);
   const navigate = useNavigate();
 
-  // Check if the user is authorized
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
     if (!token) {
       console.error("User is not authorized");
       navigate("/login");
     } else {
-      fetchBuses(); // Only fetch buses if authorized
+      fetchBuses();
     }
   }, [navigate]);
 
-  // State for handling form data
   const [formData, setFormData] = useState({
-    
     busOperator: "",
+    busLogo: "",
     busType: "Sprinter",
     capacity: "",
     busNumber: "",
@@ -38,10 +35,8 @@ const Buses = () => {
     ticketPrice: "",
   });
 
-  // State for managing whether we are in edit mode
   const [isEditing, setIsEditing] = useState(false);
 
-  // Function to fetch buses from the backend
   const fetchBuses = async () => {
     try {
       const id = localStorage.getItem("userId");
@@ -58,13 +53,11 @@ const Buses = () => {
     }
   };
 
-  // Handle input change for the form
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Function to add or update a bus
   const handleAddOrUpdateBus = async () => {
     try {
       const token = localStorage.getItem("accessToken");
@@ -82,10 +75,10 @@ const Buses = () => {
         });
         setIsEditing(false);
       }
-      fetchBuses(); // Refresh the list
+      fetchBuses();
       setFormData({
-        
         busOperator: "",
+        busLogo: "",
         busType: "Sprinter",
         capacity: "",
         busNumber: "",
@@ -101,17 +94,15 @@ const Buses = () => {
     }
   };
 
-  // Function to handle editing a bus
   const handleEditBus = (bus) => {
     setFormData(bus);
     setIsEditing(true);
   };
 
-  // Function to handle deleting a bus
   const handleDeleteBus = async (id) => {
     try {
       await apiDeleteBus(id);
-      fetchBuses(); // Refresh the list
+      fetchBuses();
     } catch (error) {
       console.error("Error deleting bus:", error);
     }
@@ -119,39 +110,39 @@ const Buses = () => {
 
   return (
     <div className="p-6">
-      <h2 className="text-xl font-semibold mb-4 border-b pb-2">Buses List</h2>
+      <h2 className="text-xl font-semibold mb-4 border-b pb-2 mt-7">Buses List</h2>
       <div className="overflow-x-auto mb-4">
         <table className="min-w-full bg-white rounded-lg shadow">
           <thead>
             <tr>
-              <th className="py-2 px-4 border border-gray-300 bg-gray-200">
+              <th className="py-2 px-4 border border-gray-300 bg-gray-200 text-left">
                 Bus Operator
               </th>
-              <th className="py-2 px-4 border border-gray-300 bg-gray-200">
+              <th className="py-2 px-4 border border-gray-300 bg-gray-200 text-center">
                 Bus Type
               </th>
-              <th className="py-2 px-4 border border-gray-300 bg-gray-200">
+              <th className="py-2 px-4 border border-gray-300 bg-gray-200 text-center">
                 Capacity
               </th>
-              <th className="py-2 px-4 border border-gray-300 bg-gray-200">
+              <th className="py-2 px-4 border border-gray-300 bg-gray-200 text-center">
                 Bus Number
               </th>
-              <th className="py-2 px-4 border border-gray-300 bg-gray-200">
+              <th className="py-2 px-4 border border-gray-300 bg-gray-200 text-center">
                 Departure City
               </th>
-              <th className="py-2 px-4 border border-gray-300 bg-gray-200">
+              <th className="py-2 px-4 border border-gray-300 bg-gray-200 text-center">
                 Arrival City
               </th>
-              <th className="py-2 px-4 border border-gray-300 bg-gray-200">
+              <th className="py-2 px-4 border border-gray-300 bg-gray-200 text-center">
                 Departure Time
               </th>
-              <th className="py-2 px-4 border border-gray-300 bg-gray-200">
+              <th className="py-2 px-4 border border-gray-300 bg-gray-200 text-center">
                 Arrival Time
               </th>
-              <th className="py-2 px-4 border border-gray-300 bg-gray-200">
+              <th className="py-2 px-4 border border-gray-300 bg-gray-200 text-center">
                 Ticket Price
               </th>
-              <th className="py-2 px-4 border border-gray-300 bg-gray-200">
+              <th className="py-2 px-4 border border-gray-300 bg-gray-200 text-center">
                 Actions
               </th>
             </tr>
@@ -159,8 +150,13 @@ const Buses = () => {
           <tbody>
             {buses.map((bus) => (
               <tr key={bus.id} className="hover:bg-gray-100">
-                <td className="py-2 px-4 border border-gray-300 text-center">
-                  {bus.busOperator}
+                <td className="py-3 px-4 border border-gray-300 text-left flex items-center space-x-2">
+                  <img
+                    src={`https://savefiles.org/${bus.busLogo}?shareable_link=341`}
+                    alt="Bus Logo"
+                    className="w-6 h-6 rounded-full"
+                  />
+                  <span>{bus.busOperator}</span>
                 </td>
                 <td className="py-2 px-4 border border-gray-300 text-center">
                   {bus.busType}
@@ -186,20 +182,21 @@ const Buses = () => {
                 <td className="py-2 px-4 border border-gray-300 text-center">
                   {bus.ticketPrice}
                 </td>
-                
                 <td className="py-2 px-4 border border-gray-300 text-center">
-                  <button
-                    onClick={() => handleEditBus(bus)}
-                    className="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 mr-2"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => handleDeleteBus(bus.id)}
-                    className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
-                  >
-                    Delete
-                  </button>
+                  <div className="flex justify-center space-x-2">
+                    <button
+                      onClick={() => handleEditBus(bus)}
+                      className="bg-[#04071F] text-white px-3 py-1 rounded"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => handleDeleteBus(bus.id)}
+                      className="bg-red-500 text-white px-3 py-1 rounded"
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}
@@ -298,37 +295,15 @@ const Buses = () => {
             className="border border-gray-300 rounded p-2"
             required
           />
-          <div className="col-span-2 text-right">
-            <button
-              type="button"
-              onClick={handleAddOrUpdateBus}
-              className={`bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 ${
-                !formData.busOperator ||
-                !formData.capacity ||
-                !formData.busNumber ||
-                !formData.departureCity ||
-                !formData.arrivalCity ||
-                !formData.departureTime ||
-                !formData.arrivalTime ||
-                !formData.ticketPrice
-                  ? "opacity-50 cursor-not-allowed"
-                  : ""
-              }`}
-              disabled={
-                !formData.busOperator ||
-                !formData.capacity ||
-                !formData.busNumber ||
-                !formData.departureCity ||
-                !formData.arrivalCity ||
-                !formData.departureTime ||
-                !formData.arrivalTime ||
-                !formData.ticketPrice
-              }
-            >
-              {isEditing ? "Update Bus" : "Add Bus"}
-            </button>
-          </div>
         </form>
+        <div className="mt-4">
+          <button
+            onClick={handleAddOrUpdateBus}
+            className="bg-[#04071F] text-white px-4 py-2 rounded"
+          >
+            {isEditing ? "Update Bus" : "Add Bus"}
+          </button>
+        </div>
       </div>
     </div>
   );
