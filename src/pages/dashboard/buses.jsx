@@ -156,7 +156,7 @@ const Buses = () => {
                     alt="Bus Logo"
                     className="w-11 h-11 rounded-full"
                   />
-                  <span>{bus.busOperator}</span>
+                  <a href={`/dashboard/bookings/${bus.id}`}><span>{bus.busOperator}</span></a>
                 </td>
                 <td className="py-2 px-4 border border-gray-300 text-center">
                   {bus.busType}

@@ -20,7 +20,7 @@ NAVLINKS : [
     {
         icon: <BookAIcon/>,
         text: "Bookings",
-        link: "/dashboard/bookings",
+        link: "/dashboard/bookings/:id",
 
     },
    

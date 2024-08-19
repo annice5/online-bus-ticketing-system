@@ -38,9 +38,11 @@ const Overview = () => {
     const fetchTotalBookings = async () => {
       const token = checkAuthorization();
       if (token) {
+        console.log("token", token);
         try {
           const response = await apiGetBooking();
-          setTotalBookings(response.data.bookings); // Assuming the endpoint returns a list of bookings
+          console.log("response", response.data);
+          setTotalBookings(response.data.length); // Assuming the endpoint returns a list of bookings
         } catch (error) {
           console.error("Error fetching bookings:", error);
         }
