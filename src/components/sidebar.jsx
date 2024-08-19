@@ -18,7 +18,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="max-h-full w-60 shadow flex flex-col px-5 py-8 bg-white">
+    <div className="h-screen w-60 shadow flex flex-col px-5 py-8 bg-white">
       <span className="text-2xl font-bold text-[#04071F] text-center">
         Dashboard
       </span>
