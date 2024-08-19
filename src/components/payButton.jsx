@@ -3,11 +3,9 @@ import axios from 'axios';
 import Spinner from './spinner';
 import { useParams } from 'react-router-dom';
 
-
 const PayButton = ({ seats, totalAmount }) => {
   const { busId } = useParams();
   const [loading, setLoading] = useState(false);
-
 
   const initializePayment = async () => {
     setLoading(true);
@@ -20,7 +18,7 @@ const PayButton = ({ seats, totalAmount }) => {
       }
  
       const response = await axios.post(
-        'https://ticket-api-vl7w.onrender.com/api/paystack/create-checkout-session',
+        'http://localhost:2900/api/paystack/create-checkout-session',
         {
           seats: seats,
           amount: totalAmount,
@@ -52,22 +50,16 @@ const PayButton = ({ seats, totalAmount }) => {
       setLoading(false);
     }
   };
- 
+
   return (
     <button
       onClick={initializePayment}
       disabled={loading}
-      className="bg-red-400 text-white font-bold py-2 px-4 rounded hover:bg-red-800"
+      className="bg-primary text-white font-bold py-2 px-4 rounded hover:bg-primary"
     >
       {loading ? <Spinner /> : 'Pay Now'}
     </button>
   );
 };
 
-
 export default PayButton;
-
-
-
-
-

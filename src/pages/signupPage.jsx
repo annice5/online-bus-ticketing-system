@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { apiSignUp, apiSignUpAdmin, apiCheckUsernameExistsAdmin } from "../services/auth";
+import { apiSignUp, apiSignUpAdmin, apiCheckUsernameExistsAdmin, apiCheckUsernameExists } from "../services/auth";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
