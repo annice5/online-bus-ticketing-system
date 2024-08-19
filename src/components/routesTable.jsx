@@ -5,6 +5,7 @@ import axios from 'axios';
 
 const RoutesTable = () => {
   const [routes, setRoutes] = useState([]);
+  
 
 
   useEffect(() => {
@@ -50,7 +51,14 @@ const RoutesTable = () => {
             <tbody>
               {routes.map((route, index) => (
                 <tr key={index} className="border-b">
-                  <td className="py-2 px-4">{route.busOperator}</td>
+                  <td className="py-2 px-4 flex gap-2">
+                  <img
+                    src={`https://savefiles.org/${route.busLogo}?shareable_link=341`}
+                    alt="Bus Logo"
+                    className="w-6 h-6 rounded-full "
+                  />
+                  <span>{route.busOperator}</span>
+                  </td>
                   <td className="py-2 px-4">{route.departureCity}</td>
                   <td className="py-2 px-4">{route.arrivalCity}</td>
                   <td className="py-2 px-4">{route.busType}</td>

@@ -154,7 +154,7 @@ const Buses = () => {
                   <img
                     src={`https://savefiles.org/${bus.busLogo}?shareable_link=341`}
                     alt="Bus Logo"
-                    className="w-6 h-6 rounded-full"
+                    className="w-11 h-11 rounded-full"
                   />
                   <span>{bus.busOperator}</span>
                 </td>
