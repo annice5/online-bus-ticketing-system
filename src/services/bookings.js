@@ -1,7 +1,7 @@
 import { apiClient } from "./config";
 
-export const apiGetBookings = async () => {
-  return apiClient.get("/bookings");
+export const apiGetBookings = async (id) => {
+  return apiClient.get(`/users/bus/bookings/${id}`);
 };
 
 export const apiAddBookings = async (payload) => {

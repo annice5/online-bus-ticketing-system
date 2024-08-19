@@ -38,10 +38,8 @@ const Overview = () => {
     const fetchTotalBookings = async () => {
       const token = checkAuthorization();
       if (token) {
-        console.log("token", token);
         try {
           const response = await apiGetBooking();
-          console.log("response", response.data);
           setTotalBookings(response.data.length); // Assuming the endpoint returns a list of bookings
         } catch (error) {
           console.error("Error fetching bookings:", error);
@@ -54,40 +52,38 @@ const Overview = () => {
   }, [navigate]);
 
   return (
-    <div >
-      <div className="flex-1 mt-14 ml-5 mr-5 ">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6 ml-28">
-          <div className="bg-gray-100 shadow-xl rounded-lg px-10 py-14">
-            <div className="flex flex-col items-center">
-              <h3 className="text-lg font-medium">Total Buses</h3>
-              <p className="text-3xl font-semibold text-green-500 mt-2">{totalBuses}</p>
-            </div>
-          </div>
-          <div className="bg-gray-100 shadow-xl rounded-lg px-10 py-14">
-            <div className="flex flex-col items-center">
-              <h3 className="text-lg font-medium">Total Bookings</h3>
-              <p className="text-3xl font-semibold text-green-500 mt-2">{totalBookings}</p>
-            </div>
+    <div className="px-4 py-6 md:px-6 md:py-8 lg:px-8 lg:py-10">
+      <div className="grid gap-6 mb-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="bg-[#e1f4f2] shadow-xl rounded-lg p-6 md:p-8">
+          <div className="flex flex-col items-center">
+            <h3 className="text-base md:text-lg font-medium text-[#043b5d]">Total Buses</h3>
+            <p className="text-2xl md:text-3xl font-semibold text-[#438e87] mt-2">{totalBuses}</p>
           </div>
         </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-32">
-          <div className="bg-white shadow-md rounded-lg p-4 flex flex-col">
-            <h3 className="text-sm font-medium mb-4">
-              Total Buses Active for 2023
-            </h3>
-            <div className="flex-grow">
-              <ActiveBuses2023 />
-              {/* Add Chart Component here */}
-            </div>
+        <div className="bg-[#e1f4f2] shadow-xl rounded-lg p-6 md:p-8">
+          <div className="flex flex-col items-center">
+            <h3 className="text-base md:text-lg font-medium text-[#043b5d]">Total Bookings</h3>
+            <p className="text-2xl md:text-3xl font-semibold text-[#438e87] mt-2">{totalBookings}</p>
           </div>
-          <div className="bg-white shadow-md rounded-lg p-4 col-span-2 flex flex-col">
-            <h3 className="text-sm font-medium mb-4">
-              Total Buses Active for 2024
-            </h3>
-            <div className="flex-grow">
-              <ActiveBuses2024 />
-            </div>
+        </div>
+      </div>
+
+      <div className="grid gap-6 mt-8 md:mt-12 lg:grid-cols-3 lg:gap-8">
+        <div className="bg-white shadow-md rounded-lg p-4 flex flex-col">
+          <h3 className="text-xs md:text-sm font-medium mb-4 text-[#043b5d]">
+            Total Buses Active for 2023
+          </h3>
+          <div className="flex-grow">
+            <ActiveBuses2023 />
+            {/* Add Chart Component here */}
+          </div>
+        </div>
+        <div className="bg-white shadow-md rounded-lg p-4 col-span-2 lg:col-span-2 flex flex-col">
+          <h3 className="text-xs md:text-sm font-medium mb-4 text-[#043b5d]">
+            Total Buses Active for 2024
+          </h3>
+          <div className="flex-grow">
+            <ActiveBuses2024 />
           </div>
         </div>
       </div>

@@ -17,12 +17,7 @@ NAVLINKS : [
         link: "/dashboard/buses",
 
     },
-    {
-        icon: <BookAIcon/>,
-        text: "Bookings",
-        link: "/dashboard/bookings/:id",
-
-    },
+    
    
 ]
 
