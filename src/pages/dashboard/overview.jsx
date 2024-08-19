@@ -54,8 +54,8 @@ const Overview = () => {
   }, [navigate]);
 
   return (
-    <div>
-      <div className="flex-1 mt-14 ml-5 mr-5">
+    <div >
+      <div className="flex-1 mt-14 ml-5 mr-5 ">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6 ml-28">
           <div className="bg-gray-100 shadow-xl rounded-lg px-10 py-14">
             <div className="flex flex-col items-center">

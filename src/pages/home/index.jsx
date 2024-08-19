@@ -47,12 +47,12 @@ const Home = () => {
           </div>
           <div className="flex gap-4">
             <Link to="/login">
-              <button className="bg-[#04071F] text-white px-4 py-2 rounded hover:bg-[#1a1f3d] transition duration-300">
+              <button className="bg-primary text-white px-4 py-2 rounded hover:bg-[#1a1f3d] transition duration-300">
                 Login
               </button>
             </Link>
             <Link to="/signup">
-              <button className="bg-[#04071F] text-white px-4 py-2 rounded hover:bg-[#1a1f3d] transition duration-300">
+              <button className="bg-primary text-white px-4 py-2 rounded hover:bg-[#1a1f3d] transition duration-300">
                 Signup
               </button>
             </Link>
