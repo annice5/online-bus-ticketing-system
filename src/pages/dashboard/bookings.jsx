@@ -1,23 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { apiGetBooking } from '../../services/bookings';
 
 const Bookings = () => {
   const [bookings, setBookings] = useState([]);
   const [error, setError] = useState(null);
 
+
   useEffect(() => {
+    const checkAuthorization = () => {
+      const token = localStorage.getItem("accessToken");
+      if (!token) {
+        console.error("User is not authorized");
+        navigate("/login"); // Redirect to login page if not authorized
+      }
+      return token;
+    };
+
     const fetchBookings = async () => {
-      try {
-        const response = await axios.get('https://ticket-api-vl7w.onrender.com/api/operator/buses/bookings'); // Adjust the URL as needed
-        setBookings(response.data);
-      } catch (err) {
-        setError('Failed to fetch bookings');
-        console.error(err);
+      const token = checkAuthorization();
+      if (token) {
+        console.log("token", token);
+        try {
+          const response = await apiGetBooking();
+          console.log("response", response.data);
+          setBookings(response.data); // Assuming the endpoint returns a list of bookings
+        } catch (error) {
+          console.error("Error fetching bookings:", error);
+        }
       }
     };
 
     fetchBookings();
   }, []);
+
+  console.log("Booking", bookings);
 
   if (error) {
     return <div className="p-4 text-red-500">{error}</div>;
@@ -41,7 +58,7 @@ const Bookings = () => {
               bookings.map((booking) => (
                 <tr key={booking._id} className="border-t">
                   <td className="py-3 px-4 border-r">{booking.user}</td>
-                  <td className="py-3 px-4 border-r">{/* You might need to fetch route details if not available */}</td>
+                  <td className="py-3 px-4 border-r">{`${booking?.departureCity}-${booking?.arrivalCity}`}</td>
                   <td className="py-3 px-4 border-r">{/* You might need to fetch departure time if not available */}</td>
                   <td className="py-3 px-4 border-r">{booking.seats.join(', ')}</td>
                   <td className="py-3 px-4">

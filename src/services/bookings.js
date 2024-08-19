@@ -16,6 +16,6 @@ export const apiDeleteBookings = async (id) => {
   return apiClient.delete(`/bookings/${id}`);
 };
 
-export const apiGetBooking = async (id, payload) => {
-  return apiClient.get(`/operator/buses/bookings/${id}`, payload);
+export const apiGetBooking = async () => {
+  return apiClient.get("/operator/buses/bookings/");
 };
