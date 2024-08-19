@@ -9,6 +9,7 @@ const DashboardLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { token, firstName, lastName, userName } = getDetails();
  
+
   useEffect(() => {
     if (token) {
       setUser({
