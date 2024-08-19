@@ -8,7 +8,7 @@ const Bookings = () => {
   useEffect(() => {
     const fetchBookings = async () => {
       try {
-        const response = await axios.get('http://localhost:2900/api/operator/buses/bookings'); // Adjust the URL as needed
+        const response = await axios.get('https://ticketting.netlify.app/api/operator/buses/bookings'); // Adjust the URL as needed
         setBookings(response.data);
       } catch (err) {
         setError('Failed to fetch bookings');

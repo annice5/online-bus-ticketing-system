@@ -28,7 +28,7 @@ const BusSeatLayout = ({ busId }) => {
   useEffect(() => {
     const fetchBusData = async () => {
       try {
-        const response = await axios.get(`http://localhost:2900/api/buses/${busId}`);
+        const response = await axios.get(`https://ticket-api-vl7w.onrender.com/api/buses/${busId}`);
         const { seats, ticketPrice } = response.data;
         setSeats(seats || []);
         setTicketPrice(parseFloat(ticketPrice.replace(/[^0-9.]/g, "")) || 0);

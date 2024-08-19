@@ -18,7 +18,7 @@ const PayButton = ({ seats, totalAmount }) => {
       }
  
       const response = await axios.post(
-        'http://localhost:2900/api/paystack/create-checkout-session',
+        'https://ticket-api-vl7w.onrender.com/api/paystack/create-checkout-session',
         {
           seats: seats,
           amount: totalAmount,
