@@ -18,7 +18,7 @@ const Home = () => {
   const handleSearch = async () => {
     try {
       const filter = JSON.stringify({ departureCity: fromCity, arrivalCity: toCity, date });
-      const response = await axios.get('http://localhost:2900/api/buses/search', {
+      const response = await axios.get('https://ticket-api-vl7w.onrender.com/api/buses/search', {
         params: { filter },
       });
 
