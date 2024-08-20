@@ -187,6 +187,15 @@ const Buses = () => {
             className="border border-gray-300 rounded p-2 w-full"
             required
           />
+          <input
+            type="file"
+            name="busLogo"
+            value={formData.busLogo}
+            onChange={handleInputChange}
+            placeholder="Upload Bus Logo"
+            className="border border-gray-300 rounded p-2 w-full"
+            required
+          />
           <select
             name="busType"
             value={formData.busType}
