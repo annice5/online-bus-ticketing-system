@@ -33,7 +33,7 @@ const DashboardLayout = () => {
   return (
     <div className="flex h-screen bg-white ">
       <Sidebar />
-      <div className=" w-full">
+      <div className=" w-full  overflow-y-auto">
         <div className="flex px-16 bg-gray-200 py-5 shadow-lg items-center">
           <span className="text-xl font-semibold text-primary ml-auto bg-white rounded-full shadow-md p-3">
             {getAvatar()}

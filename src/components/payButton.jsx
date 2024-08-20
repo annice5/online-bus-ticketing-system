@@ -37,7 +37,10 @@ const PayButton = ({ seats, totalAmount }) => {
       const paymentWindow = window.open(authorizationUrl);
  
       if (paymentWindow) {
+      //   toast.success("Payment Successful");
+      // setTimeout(() => { navigate("/checkout-success") }, 5000);
         const interval = setInterval(() => {
+
           if (paymentWindow.closed) {
             window.location.href = '/checkout-success';
             clearInterval(interval);
