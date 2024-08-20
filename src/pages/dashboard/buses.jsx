@@ -109,90 +109,60 @@ const Buses = () => {
   };
 
   return (
-    <div className="p-6">
+    <div className="p-2 sm:p-4 md:p-6">
       <h2 className="text-xl font-semibold mb-4 border-b pb-2 mt-7">Buses List</h2>
       <div className="overflow-x-auto mb-4">
-        <table className="min-w-full bg-white rounded-lg shadow">
-          <thead>
+        <table className="w-full bg-white rounded-lg shadow">
+          <thead className="bg-gray-200">
             <tr>
-              <th className="py-2 px-4 border border-gray-300 bg-gray-200 text-left">
-                Bus Operator
-              </th>
-              <th className="py-2 px-4 border border-gray-300 bg-gray-200 text-center">
-                Bus Type
-              </th>
-              <th className="py-2 px-4 border border-gray-300 bg-gray-200 text-center">
-                Capacity
-              </th>
-              <th className="py-2 px-4 border border-gray-300 bg-gray-200 text-center">
-                Bus Number
-              </th>
-              <th className="py-2 px-4 border border-gray-300 bg-gray-200 text-center">
-                Departure City
-              </th>
-              <th className="py-2 px-4 border border-gray-300 bg-gray-200 text-center">
-                Arrival City
-              </th>
-              <th className="py-2 px-4 border border-gray-300 bg-gray-200 text-center">
-                Departure Time
-              </th>
-              <th className="py-2 px-4 border border-gray-300 bg-gray-200 text-center">
-                Arrival Time
-              </th>
-              <th className="py-2 px-4 border border-gray-300 bg-gray-200 text-center">
-                Ticket Price
-              </th>
-              <th className="py-2 px-4 border border-gray-300 bg-gray-200 text-center">
-                Actions
-              </th>
+              <th className="py-2 px-2 sm:px-4 border border-gray-300 text-left">Bus Operator</th>
+              <th className="py-2 px-2 sm:px-4 border border-gray-300 text-center hidden sm:table-cell">Bus Type</th>
+              <th className="py-2 px-2 sm:px-4 border border-gray-300 text-center hidden md:table-cell">Capacity</th>
+              <th className="py-2 px-2 sm:px-4 border border-gray-300 text-center hidden lg:table-cell">Bus Number</th>
+              <th className="py-2 px-2 sm:px-4 border border-gray-300 text-center">Departure</th>
+              <th className="py-2 px-2 sm:px-4 border border-gray-300 text-center">Arrival</th>
+              <th className="py-2 px-2 sm:px-4 border border-gray-300 text-center hidden md:table-cell">Price</th>
+              <th className="py-2 px-2 sm:px-4 border border-gray-300 text-center">Actions</th>
             </tr>
           </thead>
           <tbody>
             {buses.map((bus) => (
               <tr key={bus.id} className="hover:bg-gray-100">
-                <td className="py-3 px-4 border border-gray-300 text-left flex items-center space-x-2">
-                  <img
-                    src={`https://savefiles.org/${bus.busLogo}?shareable_link=341`}
-                    alt="Bus Logo"
-                    className="w-11 h-11 rounded-full"
-                  />
-                  <a href={`/dashboard/bookings/${bus.id}`}><span>{bus.busOperator}</span></a>
+                <td className="py-2 px-2 sm:px-4 border border-gray-300 text-left">
+                  <div className="flex items-center space-x-2">
+                    <img
+                      src={`https://savefiles.org/${bus.busLogo}?shareable_link=341`}
+                      alt="Bus Logo"
+                      className="w-8 h-8 sm:w-11 sm:h-11 rounded-full"
+                    />
+                    <a href={`/dashboard/bookings/${bus.id}`} className="text-sm sm:text-base">
+                      <span>{bus.busOperator}</span>
+                    </a>
+                  </div>
                 </td>
-                <td className="py-2 px-4 border border-gray-300 text-center">
-                  {bus.busType}
+                <td className="py-2 px-2 sm:px-4 border border-gray-300 text-center hidden sm:table-cell">{bus.busType}</td>
+                <td className="py-2 px-2 sm:px-4 border border-gray-300 text-center hidden md:table-cell">{bus.capacity}</td>
+                <td className="py-2 px-2 sm:px-4 border border-gray-300 text-center hidden lg:table-cell">{bus.busNumber}</td>
+                <td className="py-2 px-2 sm:px-4 border border-gray-300 text-center">
+                  <div>{bus.departureCity}</div>
+                  <div className="text-xs text-gray-500">{bus.departureTime}</div>
                 </td>
-                <td className="py-2 px-4 border border-gray-300 text-center">
-                  {bus.capacity}
+                <td className="py-2 px-2 sm:px-4 border border-gray-300 text-center">
+                  <div>{bus.arrivalCity}</div>
+                  <div className="text-xs text-gray-500">{bus.arrivalTime}</div>
                 </td>
-                <td className="py-2 px-4 border border-gray-300 text-center">
-                  {bus.busNumber}
-                </td>
-                <td className="py-2 px-4 border border-gray-300 text-center">
-                  {bus.departureCity}
-                </td>
-                <td className="py-2 px-4 border border-gray-300 text-center">
-                  {bus.arrivalCity}
-                </td>
-                <td className="py-2 px-4 border border-gray-300 text-center">
-                  {bus.departureTime}
-                </td>
-                <td className="py-2 px-4 border border-gray-300 text-center">
-                  {bus.arrivalTime}
-                </td>
-                <td className="py-2 px-4 border border-gray-300 text-center">
-                  {bus.ticketPrice}
-                </td>
-                <td className="py-2 px-4 border border-gray-300 text-center">
-                  <div className="flex justify-center space-x-2">
+                <td className="py-2 px-2 sm:px-4 border border-gray-300 text-center hidden md:table-cell">{bus.ticketPrice}</td>
+                <td className="py-2 px-2 sm:px-4 border border-gray-300 text-center">
+                  <div className="flex justify-center space-x-1 sm:space-x-2">
                     <button
                       onClick={() => handleEditBus(bus)}
-                      className="bg-[#04071F] text-white px-3 py-1 rounded"
+                      className="bg-[#04071F] text-white px-2 py-1 sm:px-3 sm:py-1 rounded text-xs sm:text-sm"
                     >
                       Edit
                     </button>
                     <button
                       onClick={() => handleDeleteBus(bus.id)}
-                      className="bg-red-500 text-white px-3 py-1 rounded"
+                      className="bg-red-500 text-white px-2 py-1 sm:px-3 sm:py-1 rounded text-xs sm:text-sm"
                     >
                       Delete
                     </button>
@@ -207,21 +177,30 @@ const Buses = () => {
         <h3 className="text-lg font-semibold mb-2">
           {isEditing ? "Edit Bus" : "Add New Bus"}
         </h3>
-        <form className="grid grid-cols-2 gap-4">
+        <form className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <input
             type="text"
             name="busOperator"
             value={formData.busOperator}
             onChange={handleInputChange}
             placeholder="Bus Operator"
-            className="border border-gray-300 rounded p-2"
+            className="border border-gray-300 rounded p-2 w-full"
+            required
+          />
+          <input
+            type="file"
+            name="busLogo"
+            value={formData.busLogo}
+            onChange={handleInputChange}
+            placeholder="Upload Bus Logo"
+            className="border border-gray-300 rounded p-2 w-full"
             required
           />
           <select
             name="busType"
             value={formData.busType}
             onChange={handleInputChange}
-            className="border border-gray-300 rounded p-2"
+            className="border border-gray-300 rounded p-2 w-full"
           >
             <option value="Sprinter">Sprinter</option>
             <option value="Long bus">Long bus</option>
@@ -232,7 +211,7 @@ const Buses = () => {
             value={formData.capacity}
             onChange={handleInputChange}
             placeholder="Capacity"
-            className="border border-gray-300 rounded p-2"
+            className="border border-gray-300 rounded p-2 w-full"
             required
           />
           <input
@@ -241,7 +220,7 @@ const Buses = () => {
             value={formData.busNumber}
             onChange={handleInputChange}
             placeholder="Bus Number"
-            className="border border-gray-300 rounded p-2"
+            className="border border-gray-300 rounded p-2 w-full"
             required
           />
           <input
@@ -249,7 +228,7 @@ const Buses = () => {
             name="date"
             value={formData.date}
             onChange={handleInputChange}
-            className="border border-gray-300 rounded p-2"
+            className="border border-gray-300 rounded p-2 w-full"
             required
           />
           <input
@@ -258,7 +237,7 @@ const Buses = () => {
             value={formData.departureCity}
             onChange={handleInputChange}
             placeholder="Departure City"
-            className="border border-gray-300 rounded p-2"
+            className="border border-gray-300 rounded p-2 w-full"
             required
           />
           <input
@@ -267,7 +246,7 @@ const Buses = () => {
             value={formData.arrivalCity}
             onChange={handleInputChange}
             placeholder="Arrival City"
-            className="border border-gray-300 rounded p-2"
+            className="border border-gray-300 rounded p-2 w-full"
             required
           />
           <input
@@ -275,7 +254,7 @@ const Buses = () => {
             name="departureTime"
             value={formData.departureTime}
             onChange={handleInputChange}
-            className="border border-gray-300 rounded p-2"
+            className="border border-gray-300 rounded p-2 w-full"
             required
           />
           <input
@@ -283,7 +262,7 @@ const Buses = () => {
             name="arrivalTime"
             value={formData.arrivalTime}
             onChange={handleInputChange}
-            className="border border-gray-300 rounded p-2"
+            className="border border-gray-300 rounded p-2 w-full"
             required
           />
           <input
@@ -292,14 +271,14 @@ const Buses = () => {
             value={formData.ticketPrice}
             onChange={handleInputChange}
             placeholder="Ticket Price"
-            className="border border-gray-300 rounded p-2"
+            className="border border-gray-300 rounded p-2 w-full"
             required
           />
         </form>
         <div className="mt-4">
           <button
             onClick={handleAddOrUpdateBus}
-            className="bg-[#04071F] text-white px-4 py-2 rounded"
+            className="bg-[#04071F] text-white px-4 py-2 rounded w-full sm:w-auto"
           >
             {isEditing ? "Update Bus" : "Add Bus"}
           </button>
