@@ -113,7 +113,7 @@ function AdminLoginForm() {
           </span>
         </div>
         <ReCAPTCHA
-          sitekey="6LeJ1SsqAAAAAG6QZYggRff2GtBtvq7mDS3-pxZy"
+          sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
           onChange={handleRecaptchaChange}
         />
         <button
@@ -239,7 +239,7 @@ function UserLoginForm() {
           </span>
         </div>
         <ReCAPTCHA
-          sitekey="6LeJ1SsqAAAAAG6QZYggRff2GtBtvq7mDS3-pxZy"
+          sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
           onChange={handleRecaptchaChange}
         />
         <button
