@@ -178,7 +178,7 @@ function UserLoginForm() {
       toast.success(res.data.message);
       setTimeout(() => {
         navigate("/userpage");
-      }, 5000);
+      }, 2000);
     } catch (error) {
       console.log(error);
       toast.error("An error occurred!");
