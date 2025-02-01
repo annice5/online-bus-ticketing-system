@@ -37,30 +37,6 @@ function AdminLoginForm() {
     localStorage.setItem("userId", user.id || user.userId || user._id);
   };
 
-<<<<<<< HEAD
-    const onSubmit = async (data) => {
-      console.log(data);
-      setIsSubmitting(true);
-      try {
-        const res = await apiLogInAdmin({
-          email: data.email,
-          password: data.password
-        })
-        console.log("Response: ", res.data);
-  
-        addToLocalStorage(res.data.accessToken, res.data.user);
-        toast.success(res.data.message);
-        setTimeout(() => { navigate("/dashboard") }, 2000);
-  
-      } catch (error) {
-        console.log(error)
-        toast.error("An error occurred!")
-      }
-      finally {
-        setIsSubmitting(false)
-      }
-    };
-=======
   const onSubmit = async (data) => {
     console.log(data);
     setIsSubmitting(true);
@@ -71,7 +47,6 @@ function AdminLoginForm() {
         recaptchaToken: recaptchaToken,
       });
       console.log("Response: ", res.data);
->>>>>>> 69e21b17e10f29e08db148b1477bd1bf3501bafc
 
       addToLocalStorage(res.data.accessToken, res.data.user);
       toast.success(res.data.message);
@@ -201,14 +176,9 @@ function UserLoginForm() {
 
       addToLocalStorage(res.data.accessToken, res.data.user);
       toast.success(res.data.message);
-<<<<<<< HEAD
-      setTimeout(() => { navigate("/userpage") }, 2000);
-
-=======
       setTimeout(() => {
         navigate("/userpage");
       }, 2000);
->>>>>>> 69e21b17e10f29e08db148b1477bd1bf3501bafc
     } catch (error) {
       console.log(error);
       toast.error("An error occurred!");
