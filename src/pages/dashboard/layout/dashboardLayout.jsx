@@ -31,7 +31,7 @@ const DashboardLayout = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row bg-background min-h-screen">
+    <div className="flex flex-col md:flex-row bg-background min-h-screen h-screen">
       <div className="md:hidden">
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -43,16 +43,12 @@ const DashboardLayout = () => {
       <div className={`${sidebarOpen ? 'block' : 'hidden'} md:block`}>
         <Sidebar />
       </div>
-      <div className="flex-1">
-        <div className="flex items-center justify-between px-4 md:px-16 bg-primary text-white py-5 shadow-lg">
-          <Link
-            to="/dashboard/userprofile"
-            className="ml-auto p-2 md:p-4 rounded-full cursor-pointer"
-          >
-            <span className="text-lg md:text-xl font-semibold text-background bg-accent rounded-full shadow-md p-2 md:p-3">
+      <div className="flex-1 overflow-y-auto">
+        <div className="flex items-center justify-between px-4 md:px-16 bg-primary text-white py-5 shadow-lg ">
+          <span className="text-lg md:text-xl font-semibold text-background bg-accent rounded-full shadow-md p-2 md:p-3 ml-auto">
               {getAvatar()}
             </span>
-          </Link>
+          
         </div>
         <div className="p-4 md:p-8">
           <Outlet context={[user, setUser]} />
